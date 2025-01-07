@@ -5,54 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Steganography</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding: 20px;
-            background-color: #f4f6f9;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 700px;
-            margin: auto;
-        }
-        .heading1 {
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #343a40;
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: #495057;
-            margin-top: 30px;
-        }
-        label {
-            font-weight: 600;
-        }
-        button {
-            font-size: 1rem;
-            padding: 10px 20px;
-        }
-        .result {
-            background-color: #f8f9fa;
-            border-left: 4px solid #007bff;
-            padding: 10px 15px;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-        .result p {
-            margin: 0;
-            font-size: 1rem;
-            color: #212529;
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
     <div class="container">
@@ -61,7 +14,6 @@
             <h1 class="text-center">WINGERS - Image Steganography Tool</h1>
         </div>
         
-        <!-- Encryption Section -->
         <h2>Encryption</h2>
         <form action="/encrypt" method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -82,7 +34,6 @@
         </div>
         {% endif %}
         
-        <!-- Decryption Section -->
         <h2>Decryption</h2>
         <form action="/decrypt" method="POST" enctype="multipart/form-data">
             <div class="form-group">
