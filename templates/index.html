@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Steganography</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 700px;
+            margin: auto;
+        }
+        .heading1 {
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #343a40;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #495057;
+            margin-top: 30px;
+        }
+        label {
+            font-weight: 600;
+        }
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+        .result {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .result p {
+            margin: 0;
+            font-size: 1rem;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="heading1">
+            <h1 class="text-center">WINGERS - Image Steganography Tool</h1>
+        </div>
+        
+        <!-- Encryption Section -->
+        <h2>Encryption</h2>
+        <form action="/encrypt" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select Image:</label>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".png, .jpg, .jpeg, .gif" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Enter Text:</label>
+                <input type="text" class="form-control" id="text" name="text" placeholder="Enter text to encrypt" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Encrypt</button>
+        </form>
+
+        {% if encrypted_text %}
+        <div class="result">
+            <p><strong>Encrypted Text:</strong> {{ encrypted_text }}</p>
+            <p><strong>Key:</strong> {{ key }}</p>
+        </div>
+        {% endif %}
+        
+        <!-- Decryption Section -->
+        <h2>Decryption</h2>
+        <form action="/decrypt" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file_decrypt">Select Image:</label>
+                <input type="file" class="form-control-file" id="file_decrypt" name="file" accept=".png, .jpg, .jpeg, .gif" required>
+            </div>
+            <div class="form-group">
+                <label for="key">Enter Key:</label>
+                <input type="number" class="form-control" id="key" name="key" min="2" placeholder="Enter decryption key" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Decrypt</button>
+        </form>
+
+        {% if message %}
+        <div class="result">
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+        
+        {% if decrypted_text %}
+        <div class="result">
+            <p><strong>Decrypted Text:</strong> {{ decrypted_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function clearFields() {
+            document.getElementById("file").value = "";
+            document.getElementById("text").value = "";
+            document.getElementById("key").value = "";
+            document.getElementById("file_decrypt").value = "";
+        }
+        window.onload = clearFields;
+    </script>
+</body>
+</html>
